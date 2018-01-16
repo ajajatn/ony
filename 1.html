@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default navbar-fixed-top classic-navbar" role="banner"><div class="backButton" ng-click="back()" ng-show="previousButton">
+        <span class="fui-arrow-left animated fadeIn btn" aria-hidden="true"></span>
+    </div>
+    <div class="backButton" ng-click="back()" ng-show="closeButton">
+        <span class="glyphicon glyphicon-remove animated fadeIn btn" aria-hidden="true"></span>
+    </div>
+    <div>
+        <h2 class="title">{{::appName}}</h2>
+    </div>
+</nav><div class="content">
+    <div class="container-fluid">
+        <div id="body" class="zone" ng-controller="keosu-articleController" ng-init='init({"host":"http:\/\/localhost\/keosu\/web\/app_dev.php\/","gadgetId":2,"pageId":1,"gadgetParam":{"article-id":1,"offline":false,"cache":10,"timeout":10},"appParam":[]})'><div class="animated fadeIn">
+	<div ng-bind-html="error"></div>
+	<keosu-share object="article" url="article.shareUrl"></keosu-share>
+	<div class="row-fluid">
+		<div class="media">
+			<div class="pull-left thumbnails-left">
+				<div class="img-min-list">
+					<img class="img-rounded img-min" ng-if="article.attachments" ng-src="{{ article.attachments[0].path }}" alt="" style="width:35%; height: auto; overflow:hidden;" />
+				</div>
+			</div>
+			<div class="medias-body">
+				<h5 ng-bind-html="::article.title"></h5>
+			</div>
+		</div>
+		<hr>
+	</div>
+	<div class="gadget-content article">
+		<div ng-bind-html="::article.content"></div>
+	</div>
+	<keosu-comments object-id="article.id" object-name="article.dataModelObjectName" enable-comments="article.enableComments" ></keosu-comments>
+</div>
+</div>
+    </div>
+</div>
+
+<div class="offline">
+    <div ng-show="{{offline}}">Network unreachable</div>
+</div>
+
+<footer id="menu" class="zone classic-menu navbar-fixed-bottom" ng-controller="keosu-menuController" ng-init='init({"host":"http:\/\/localhost\/keosu\/web\/app_dev.php\/","gadgetId":1,"pageId":1,"gadgetParam":{"menu-id":3},"appParam":[]})'><div ng-controller="keosu-menuController" class=" row-fluid menu">
+	<div ng-repeat="page in pages" class="menu-elements">
+        <div class="menu-item-container">
+			<a class="lien-menu-bar"  href="#/Page/{{ ::page.id }}">
+				<img class="image-menu-bar" ng-src="{{ getPath(page.icon, page.iconActive,page.id) }}"  ng-class="getClass(page.id)"/>
+                </br>
+				<span class="page-name-menu" ng-bind="page.name"></span>
+			</a>
+		</div>
+	</div>
+</div></footer>

@@ -1,0 +1,103 @@
+<nav class="navbar navbar-default navbar-fixed-top classic-navbar" role="banner"><div class="backButton" ng-click="back()" ng-show="previousButton">
+		<span class="fui-arrow-left animated fadeIn btn" aria-hidden="true"></span>
+	</div>
+	<div class="backButton" ng-click="back()" ng-show="closeButton">
+		<span class="glyphicon glyphicon-remove animated fadeIn btn" aria-hidden="true"></span>
+	</div>
+	<div>
+		<h2 class="title">{{::appName}}</h2>
+	</div>
+</nav><div class="content">
+	<div class="container-fluid">
+		<div id="top-body" class="zone" ng-controller="keosu-rssController" ng-init='init({"host":"http:\/\/localhost\/keosu\/web\/app_dev.php\/","gadgetId":5,"pageId":3,"gadgetParam":{"url":"http:\/\/jtc.tn\/feed\/","articlesPerPage":"5"},"appParam":[]})'><!-- TITLE LIST -->
+<div class="rss-list" ng-show="isList" ng-swipe-left="next()" ng-swipe-right="prev()">
+	<div class="panel list">
+		<div class="panel-body list-content">
+			<div class="row-fluid list-elements animated {{slide}} rss-title-wrapper" ng-repeat="elem in currentlist">
+				<div class="media" ng-click="open(elem)">
+					<div class="media-body list-title rss-title">
+						<h6 class="title">{{ elem.title }}</h6>
+						<img class="center" ng-src="{{elem.image}}" alt=""/>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<button ng-show="page > 0" ng-click="prev() "
+			class="previous btn btn-default btn-page animated fadeIn">Prev</button>
+	<button ng-show="page < (last - 1)" ng-click="next()"
+			class="next btn btn-default btn-page pull-right animated fadeIn">Next</button>
+</div>
+
+<!-- ARTICLE -->
+<div ng-hide="isList" class="animated zoomIn">
+	<div class="row-fluid rss-title">
+		<h6 class="title">{{ title }}</h6>
+		<img class="center" ng-if="hasImage" ng-src="{{ path }}" alt="" />
+	</div>
+	<hr>
+	<div class="gadget-content">
+		<div class="row-fluid rss-article">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div ng-bind-html="body"></div>
+			</div>
+		</div>
+		<!--<facebook-share title="title" text="body" picture="path" link="link"></facebook-share>-->
+	</div>
+</div></div>
+		<div id="bottom-body" class="zone" ng-controller="keosu-rssController" ng-init='init({"host":"http:\/\/localhost\/keosu\/web\/app_dev.php\/","gadgetId":4,"pageId":3,"gadgetParam":{"url":"http:\/\/jtc.tn\/feed\/","articlesPerPage":"5"},"appParam":[]})'><!-- TITLE LIST -->
+<div class="rss-list" ng-show="isList" ng-swipe-left="next()" ng-swipe-right="prev()">
+	<div class="panel list">
+		<div class="panel-body list-content">
+			<div class="row-fluid list-elements animated {{slide}} rss-title-wrapper" ng-repeat="elem in currentlist">
+				<div class="media" ng-click="open(elem)">
+					<div class="media-body list-title rss-title">
+						<h6 class="title">{{ elem.title }}</h6>
+						<img class="center" ng-src="{{elem.image}}" alt=""/>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<button ng-show="page > 0" ng-click="prev() "
+			class="previous btn btn-default btn-page animated fadeIn">Prev</button>
+	<button ng-show="page < (last - 1)" ng-click="next()"
+			class="next btn btn-default btn-page pull-right animated fadeIn">Next</button>
+</div>
+
+<!-- ARTICLE -->
+<div ng-hide="isList" class="animated zoomIn">
+	<div class="row-fluid rss-title">
+		<h6 class="title">{{ title }}</h6>
+		<img class="center" ng-if="hasImage" ng-src="{{ path }}" alt="" />
+	</div>
+	<hr>
+	<div class="gadget-content">
+		<div class="row-fluid rss-article">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div ng-bind-html="body"></div>
+			</div>
+		</div>
+		<!--<facebook-share title="title" text="body" picture="path" link="link"></facebook-share>-->
+	</div>
+</div></div>
+	</div>
+</div>
+
+<div class="offline">
+	<div ng-show="{{offline}}">Network unreachable</div>
+</div>
+
+<footer id="menu" class="zone classic-menu navbar-fixed-bottom" ng-controller="keosu-menuController" ng-init='init({"host":"http:\/\/localhost\/keosu\/web\/app_dev.php\/","gadgetId":1,"pageId":3,"gadgetParam":{"menu-id":3},"appParam":[]})'><div ng-controller="keosu-menuController" class=" row-fluid menu">
+	<div ng-repeat="page in pages" class="menu-elements">
+        <div class="menu-item-container">
+			<a class="lien-menu-bar"  href="#/Page/{{ ::page.id }}">
+				<img class="image-menu-bar" ng-src="{{ getPath(page.icon, page.iconActive,page.id) }}"  ng-class="getClass(page.id)"/>
+                </br>
+				<span class="page-name-menu" ng-bind="page.name"></span>
+			</a>
+		</div>
+	</div>
+</div></footer>
